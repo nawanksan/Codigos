@@ -1,0 +1,129 @@
+<script>
+    class Livro{
+        livros = []
+
+        addL(){
+            var isbn = prompt("isbn")
+            var nome_livro = prompt("nome do livro")
+            var ano = prompt("ano do livro")
+            var armazenarLivro = {'isbn' : isbn, 'nome_livro' : nome_livro, 'ano': ano}
+            this.livros.push(armazenarLivro)
+            console.log(this.livros)
+            //document.write("livro cadastrado")
+        }
+
+        removerL(){
+            this.livros.pop()
+        }
+        limparL(){
+            this.livros = []
+            console.log(LL.livros)
+            
+        }
+
+        buscarL(){
+            let achou = false
+            let pesquisarL = prompt("digite o isbn")
+            for(let x=0; x<LL.livros.length; x++){
+                if(pesquisarL == this.livros[x].isbn){
+                    achou = true
+                }
+            }
+
+            if(achou == true){
+                document.write("<br>Livro encontrado")
+            }else{
+                document.write("<br>Livro não encontrado")
+            }
+        }
+    }
+
+    class Autor{
+        autores = []
+
+        addA(){
+            var nome_autor = prompt("nome autor")
+            var cpf = prompt("cpf")
+            var editora = prompt("editora")
+            var armazenarAutor = {'nome_autor': nome_autor, 'cpf':cpf, 'editora': editora}
+            this.autores.push(armazenarAutor)
+            console.log(AA.autores)
+            //document.write("<br>autor cadastrado")
+            
+        }
+
+        removerA(){
+            this.autores.pop()
+        }
+
+        limparA(){
+            this.autores = []
+            console.log(AA.autores)
+            
+        }
+        buscarA(){
+            let achou = false
+            let pesquisarA = prompt("digite o autor")
+            for(let y=0; y<this.autores.length; y++){
+                if(pesquisarA == this.autores[y].nome_autor){
+                    achou = true
+                }
+            }
+
+            if(achou == true){
+                document.write("<br>autor encontrado")
+            }else{
+                document.write("<br>autor não encontrado")
+            }
+        }
+    }
+
+LL = new Livro();
+AA = new Autor();
+let pegar = 18
+
+while(pegar != 0){
+    pegar = prompt("1-adicionar\n2-remover\n3-buscar\n4-limpar pilha\n5-Mostrar\n0-parar");
+    
+    if(pegar == 1){
+        AA.addA()
+        LL.addL()
+    }
+
+    if(pegar == 2){
+        AA.removerA();
+        LL.removerL();
+        console.log(AA.autores)
+        console.log(LL.livros)
+        document.write("<br>removidos")
+    }
+
+    if(pegar == 3){
+        LL.buscarL()
+        AA.buscarA()
+    }
+
+    if(pegar == 4){
+        document.write("<br>pilhas vazias")
+        AA.limparA()
+        LL.limparL()
+    }
+
+    if(pegar == 5){
+        if(AA.autores.length & LL.livros.length >= 0){
+            let autores = JSON.stringify(AA.autores)
+            let livros = JSON.stringify(LL.livros)
+
+            document.write(autores)
+            document.write("<br>"+livros)
+        }else{
+            document.write("<br>nenhum livro e Autor cadastrado")
+        }
+    }
+
+    if(pegar == 0){
+        document.write("<br>VOCÊ SAIU")
+        break;
+    }
+}
+</script>
